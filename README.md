@@ -1,6 +1,8 @@
-# meme-fortune-teller
+# Meme Fortune Teller
 
-The application answers questions using random memes. Basic version: input field, button, random meme display, buttons 👍/👎.
+A fun iOS application that answers your questions using random memes from the internet! Ask any question, get a meme as your "fortune" - because sometimes the universe speaks in memes. 🔮✨
+
+**Basic version includes:** question input field, "Get Prediction" button, random meme display, and accept/reject buttons (👍/👎).
 
 # Meme Fortune Teller (SwiftUI)
 
@@ -23,29 +25,56 @@ cd meme-fortune-teller
 open MemeFortuneTeller.xcodeproj
 ```
 
-## 🧩 Functionality (Basic task)
-Enter question and "Get prediction" button
-Display one random meme via the imgflip.com API
+## 🧩 Functionality (Basic Task)
 
-Two buttons: 👍 (satisfied) or 👎 (want a new meme)
+- **Question Input**: Enter your question in the text field
+- **Get Prediction**: Tap the button to receive your meme fortune
+- **Random Meme Display**: Shows a random meme from imgflip.com API as your "answer"
+- **User Actions**: 
+  - 👍 Accept the prediction (satisfied with the answer)
+  - 👎 Get a new meme (want a different fortune)
 
-## 📱 architecture
-ViewModel — meme query logic and state management.
+## 📱 Architecture
 
-View — SwiftUI-экраны.
+**MVVM Pattern (Model-View-ViewModel)**
 
-Model — Meme object structure, corresponding to JSON from API.
+- **Model** (`MemeModel.swift`) — Data structures for API responses: `Meme`, `MemeResponse`, `MemeData`
+- **View** (`ContentView.swift`) — SwiftUI screens with user interface components
+- **ViewModel** (`MainViewModel.swift`) — Business logic, state management, and API communication
+- **Service** (`MemeService.swift`) — Network layer for imgflip.com API calls using Combine framework
 
-## 🛠 development plan
-- [ ] Establish the structure of the project.
+**Key Components:**
+- Combine framework for reactive programming
+- URLSession for HTTP requests
+- ObservableObject for state management
+- Published properties for UI updates
 
-- [ ] Implement the imgflip API call.
+## 🛠 Development Plan
 
-- [ ] Display of memes and buttons.
+**Phase 1: Project Setup**
+- [ ] Configure project structure (MVVM)
 
-- [ ] Click processing 👍/👎.
+**Phase 2: Core Implementation**
+- [ ] Create data models (`MemeModel.swift`)
+- [ ] Implement API service (`MemeService.swift`)
+- [ ] Build ViewModel with state management
+- [ ] Design main UI with input field and button
 
-## 📚 Ресурсы
-Документация [imgflip API](https://imgflip.com/api)
+**Phase 3: User Interaction**
+- [ ] Display random meme from API
+- [ ] Add 👍/👎 buttons functionality
+- [ ] Handle loading states and errors
+- [ ] Polish UI/UX
+
+**Phase 4: Testing & Refinement**
+- [ ] Test API integration
+- [ ] Handle edge cases and error scenarios
+- [ ] Code review and optimization
+
+## 📚 Resources
+
+- [imgflip API Documentation](https://imgflip.com/api) — Official API documentation for meme data
+- [Combine Framework](https://developer.apple.com/documentation/combine) — Reactive programming in Swift
+- [MVVM Pattern in SwiftUI](https://developer.apple.com/documentation/swiftui/managing-model-data-in-your-app) — Apple's guide to data management
 
 This project was created for educational purposes to learn Swift and SwiftUI development.
