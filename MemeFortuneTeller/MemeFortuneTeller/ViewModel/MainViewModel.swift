@@ -63,8 +63,6 @@ class MainViewModel {
         getPrediction()
     }
     
-    var onResetComplete: (() -> Void)?  // Callback для активации поля
-    
     func acceptPrediction() {
         // Для продвинутого задания - сохраняем в SwiftData
         // saveFortune()
@@ -73,7 +71,6 @@ class MainViewModel {
         //showSuccessMessage()
         showReactionAnimation("👍") {
             self.resetState()
-            self.onResetComplete?()
         }
     }
     func rejectPrediction() {
