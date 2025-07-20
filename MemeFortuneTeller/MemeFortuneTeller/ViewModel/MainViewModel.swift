@@ -7,7 +7,7 @@
 
 
 import Foundation
-import SwiftUI  // Добавляем для withAnimation
+import SwiftUI
 import Observation
 
 @Observable
@@ -17,27 +17,31 @@ class MainViewModel {
     var isLoading: Bool = false
     var showMeme: Bool = false
     
-    // анимации всплывающих error-сообщений
-    var showToast: Bool = false
-    var toastMessage: String = ""
-    
     // анимации реакций
     var showReaction: Bool = false
     var reactionEmoji: String = ""
     
+    var toastManager: ToastManager
     var shouldFocusTextField: Bool = false
     
-    private let memeService = MemeService()
+    private let memeService: MemeService
+    
+    init(
+        toastManager: ToastManager = ToastManager(),
+        memeService: MemeService = MemeService()
+    ) {
+        self.toastManager = toastManager
+        self.memeService = memeService
+    }
     
     func getPrediction() {
         guard !userQuestion.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-            showErrorToast("Пожалуйста, введите ваш вопрос")
+            toastManager.show("Пожалуйста, введите ваш вопрос")
             return
         }
         
         isLoading = true
         showMeme = false
-        showToast = false
         
         Task { @MainActor in
             do {
@@ -46,16 +50,10 @@ class MainViewModel {
                 self.currentMeme = randomMeme
                 self.showMeme = true
             } catch {
-                showErrorToast("Ошибка: \(error.localizedDescription)")
+                toastManager.show("Ошибка: \(error.localizedDescription)")
+
             }
             self.isLoading = false
-        }
-    }
-    
-    private func showErrorToast(_ message: String) {
-        toastMessage = message
-        withAnimation(.easeInOut(duration: 0.3)) {
-            showToast = true
         }
     }
     
@@ -68,7 +66,6 @@ class MainViewModel {
         // saveFortune()
         
         // Показываем успех и сбрасываем
-        //showSuccessMessage()
         showReactionAnimation("👍") {
             self.resetState()
         }
@@ -83,11 +80,7 @@ class MainViewModel {
     private func resetState() {
         userQuestion = ""
         currentMeme = nil
-        showMeme = false
-        
-        showToast = false
-        toastMessage = ""
-        
+        showMeme = false        
         shouldFocusTextField = true
     }
     

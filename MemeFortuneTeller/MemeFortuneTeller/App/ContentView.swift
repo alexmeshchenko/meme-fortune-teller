@@ -48,9 +48,9 @@ struct ContentView: View {
                 }
             }
             
-            // Toast overlay
-            ToastView(message: viewModel.toastMessage,
-                      isShowing: $viewModel.showToast)
+            // Toast overlay - используем toastManager из viewModel
+            ToastView(message: viewModel.toastManager.message,
+                      isShowing: $viewModel.toastManager.isShowing)
         }
     }
     
