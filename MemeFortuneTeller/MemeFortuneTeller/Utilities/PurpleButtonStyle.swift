@@ -11,11 +11,10 @@ import SwiftUI
 struct PurpleButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .foregroundColor(.white)
+            .foregroundStyle(.white)
             .padding()
             .frame(maxWidth: .infinity)
-            .background(Color.purple)
-            .cornerRadius(12)
+            .background(.purple, in: RoundedRectangle(cornerRadius: 12))
             .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
     }
 }
@@ -26,8 +25,7 @@ struct AcceptButtonStyle: ButtonStyle {
         configuration.label
             .font(.largeTitle)
             .frame(maxWidth: .infinity, minHeight: 50)
-            .background(Color.green.opacity(0.2))
-            .cornerRadius(12)
+            .background(.green.opacity(0.2), in: RoundedRectangle(cornerRadius: 12))
             .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
     }
 }
@@ -38,8 +36,7 @@ struct RejectButtonStyle: ButtonStyle {
         configuration.label
             .font(.largeTitle)
             .frame(maxWidth: .infinity, minHeight: 50)
-            .background(Color.red.opacity(0.2))
-            .cornerRadius(12)
+            .background(.red.opacity(0.2), in: RoundedRectangle(cornerRadius: 12))
             .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
     }
 }

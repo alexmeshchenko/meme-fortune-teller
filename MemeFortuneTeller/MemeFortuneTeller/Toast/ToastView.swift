@@ -16,13 +16,10 @@ struct ToastView: View {
         VStack {
             if isShowing {
                 Text(message)
-                    .foregroundColor(.white)
+                    .foregroundStyle(.primary)
                     .padding()
-                    .background(
-                        Color.red
-                            .opacity(0.85)  // Полупрозрачность по Раскину
-                    )
-                    .cornerRadius(10)
+                    .background(.thickMaterial, in: RoundedRectangle(cornerRadius: 10))
+                    .background(.red.opacity(0.6), in: RoundedRectangle(cornerRadius: 10))
                     .padding(.horizontal)
                     .padding(.top, topPadding)
                     .transition(.move(edge: .top).combined(with: .opacity))

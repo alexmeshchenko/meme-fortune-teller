@@ -70,11 +70,12 @@ struct ContentView: View {
                             .aspectRatio(contentMode: .fit)
                     } placeholder: {
                         Rectangle()
-                            .fill(Color.gray.opacity(0.3))
+                            .fill(.gray.opacity(0.3))
                             .overlay(ProgressView())
                     }
                     .frame(maxHeight: 300)
-                    .cornerRadius(12)
+                    .background(.clear, in: RoundedRectangle(cornerRadius: 12))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
                     
                     // Анимированная реакция поверх
                     if viewModel.reactionManager.isShowing {

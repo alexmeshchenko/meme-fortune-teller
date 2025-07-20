@@ -14,7 +14,7 @@ struct SearchTextFieldStyle: TextFieldStyle {
     func _body(configuration: TextField<Self._Label>) -> some View {
         HStack {
             Image(systemName: "magnifyingglass")
-                .foregroundColor(.gray)
+                .foregroundStyle(.gray)
                 .padding(.leading, 12)
             
             configuration
@@ -26,7 +26,7 @@ struct SearchTextFieldStyle: TextFieldStyle {
                     text = ""
                 } label: {
                     Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(.gray)
+                        .foregroundStyle(.gray)
                 }
                 .padding(.trailing, 12)
             } else {
@@ -35,7 +35,6 @@ struct SearchTextFieldStyle: TextFieldStyle {
                     .frame(width: 32)
             }
         }
-        .background(Color(.systemGray6))
-        .cornerRadius(10)
+        .background(.gray.opacity(0.1), in: RoundedRectangle(cornerRadius: 10))
     }
 }
