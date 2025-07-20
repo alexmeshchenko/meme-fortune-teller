@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Observation
 
+@MainActor
 @Observable
 class MainViewModel {
     var userQuestion: String = ""
@@ -41,7 +42,7 @@ class MainViewModel {
         isLoading = true
         showMeme = false
         
-        Task { @MainActor in
+        Task {
             do {
                 let memeData = try await memeService.fetchMemes()
                 let randomMeme = memeData.memes.randomElement() ?? memeData.memes[0]
@@ -64,14 +65,16 @@ class MainViewModel {
         // saveFortune()
         
         // Показываем успех и сбрасываем
-        reactionManager.showReaction("👍") {
-            self.resetState()
+        Task {
+            await reactionManager.showReaction("👍")
+            resetState()
         }
     }
     func rejectPrediction() {
         // Загружаем новый мем для того же вопроса
-        reactionManager.showReaction("👎") {
-            self.getPrediction()
+        Task {
+            await reactionManager.showReaction("👎")
+            getPrediction()
         }
     }
     

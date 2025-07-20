@@ -8,10 +8,11 @@
 import Foundation
 import Observation
 
+@MainActor
 @Observable
 class MemeService {
     private let baseURL = "https://api.imgflip.com/get_memes"
-    private let enableTestDelay = true // Для тестирования UI
+    private let enableTestDelay = false // Для тестирования UI
     
     func fetchMemes() async throws -> MemeData {
         guard let url = URL(string: baseURL) else {

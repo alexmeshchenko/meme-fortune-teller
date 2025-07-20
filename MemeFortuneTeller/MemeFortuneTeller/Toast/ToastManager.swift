@@ -8,6 +8,7 @@
 import SwiftUI
 import Observation
 
+@MainActor
 @Observable
 class ToastManager {
     var isShowing: Bool = false
@@ -19,7 +20,7 @@ class ToastManager {
             isShowing = true
         }
         
-        Task { @MainActor in
+        Task {
             try? await Task.sleep(for: .seconds(3))
             withAnimation {
                 isShowing = false
