@@ -5,7 +5,6 @@
 //  Created by Aleksandr Meshchenko on 19.07.25.
 //
 
-
 import SwiftData
 import Foundation
 

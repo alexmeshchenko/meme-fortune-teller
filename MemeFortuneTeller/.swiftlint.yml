@@ -1,7 +1,7 @@
 # Файлы/папки, которые SwiftLint должен проверять
 included:
-  - Sources
-  - Tests
+  - MemeFortuneTeller
+  - MemeFortuneTellerTests
 
 # Отключённые правила
 disabled_rules:

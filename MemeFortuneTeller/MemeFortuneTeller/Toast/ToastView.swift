@@ -18,7 +18,10 @@ struct ToastView: View {
                 Text(message)
                     .foregroundColor(.white)
                     .padding()
-                    .background(Color.red)
+                    .background(
+                        Color.red
+                            .opacity(0.85)  // Полупрозрачность по Раскину
+                    )
                     .cornerRadius(10)
                     .padding(.horizontal)
                     .padding(.top, topPadding)

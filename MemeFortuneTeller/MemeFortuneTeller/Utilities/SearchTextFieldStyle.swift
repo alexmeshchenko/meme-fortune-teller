@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchTextFieldStyle: TextFieldStyle {
     @Binding var text: String
     
+    // swiftlint:disable:next identifier_name
     func _body(configuration: TextField<Self._Label>) -> some View {
         HStack {
             Image(systemName: "magnifyingglass")
