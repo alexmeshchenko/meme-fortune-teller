@@ -82,20 +82,4 @@ class MainViewModel {
         showMeme = false        
         shouldFocusTextField = true
     }
-    
-//    private func showReactionAnimation(_ emoji: String, completion: @escaping () -> Void) {
-//        reactionEmoji = emoji
-//        withAnimation(.easeInOut(duration: 0.3)) {
-//            showReaction = true
-//        }
-//        
-//        Task {
-//            try? await Task.sleep(for: .milliseconds(800))
-//            withAnimation(.easeOut(duration: 0.3)) {
-//                showReaction = false
-//            }
-//            try? await Task.sleep(for: .milliseconds(300))
-//            completion()
-//        }
-//    }
 }

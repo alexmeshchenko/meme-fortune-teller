@@ -78,12 +78,10 @@ struct ContentView: View {
                     
                     // Анимированная реакция поверх
                     if viewModel.reactionManager.isShowing {
-                        Text(viewModel.reactionManager.emoji)
-                            .font(.system(size: 120))
-                            .scaleEffect(viewModel.reactionManager.isShowing ? 1.0 : 0.5)
-                            .opacity(viewModel.reactionManager.isShowing ? 1.0 : 0.0)
-                            .animation(.spring(response: 0.6, dampingFraction: 0.8),
-                                       value: viewModel.reactionManager.isShowing)
+                        ReactionView(
+                            emoji: viewModel.reactionManager.emoji,
+                            isShowing: viewModel.reactionManager.isShowing
+                        )
                     }
                 }
                 
