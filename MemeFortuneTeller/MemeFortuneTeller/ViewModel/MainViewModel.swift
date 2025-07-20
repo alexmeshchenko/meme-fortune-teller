@@ -17,20 +17,19 @@ class MainViewModel {
     var isLoading: Bool = false
     var showMeme: Bool = false
     
-    // анимации реакций
-    var showReaction: Bool = false
-    var reactionEmoji: String = ""
-    
     var toastManager: ToastManager
+    var reactionManager: ReactionManager
     var shouldFocusTextField: Bool = false
     
     private let memeService: MemeService
     
     init(
         toastManager: ToastManager = ToastManager(),
+        reactionManager: ReactionManager = ReactionManager(),
         memeService: MemeService = MemeService()
     ) {
         self.toastManager = toastManager
+        self.reactionManager = reactionManager
         self.memeService = memeService
     }
     
@@ -66,13 +65,13 @@ class MainViewModel {
         // saveFortune()
         
         // Показываем успех и сбрасываем
-        showReactionAnimation("👍") {
+        reactionManager.showReaction("👍") {
             self.resetState()
         }
     }
     func rejectPrediction() {
         // Загружаем новый мем для того же вопроса
-        showReactionAnimation("👎") {
+        reactionManager.showReaction("👎") {
             self.getPrediction()
         }
     }
@@ -84,19 +83,19 @@ class MainViewModel {
         shouldFocusTextField = true
     }
     
-    private func showReactionAnimation(_ emoji: String, completion: @escaping () -> Void) {
-        reactionEmoji = emoji
-        withAnimation(.easeInOut(duration: 0.3)) {
-            showReaction = true
-        }
-        
-        Task {
-            try? await Task.sleep(for: .milliseconds(800))
-            withAnimation(.easeOut(duration: 0.3)) {
-                showReaction = false
-            }
-            try? await Task.sleep(for: .milliseconds(300))
-            completion()
-        }
-    }
+//    private func showReactionAnimation(_ emoji: String, completion: @escaping () -> Void) {
+//        reactionEmoji = emoji
+//        withAnimation(.easeInOut(duration: 0.3)) {
+//            showReaction = true
+//        }
+//        
+//        Task {
+//            try? await Task.sleep(for: .milliseconds(800))
+//            withAnimation(.easeOut(duration: 0.3)) {
+//                showReaction = false
+//            }
+//            try? await Task.sleep(for: .milliseconds(300))
+//            completion()
+//        }
+//    }
 }

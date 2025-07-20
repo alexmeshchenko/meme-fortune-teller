@@ -77,12 +77,13 @@ struct ContentView: View {
                     .cornerRadius(12)
                     
                     // Анимированная реакция поверх
-                    if viewModel.showReaction {
-                        Text(viewModel.reactionEmoji)
+                    if viewModel.reactionManager.isShowing {
+                        Text(viewModel.reactionManager.emoji)
                             .font(.system(size: 120))
-                            .scaleEffect(viewModel.showReaction ? 1.0 : 0.5)
-                            .opacity(viewModel.showReaction ? 1.0 : 0.0)
-                            .animation(.spring(response: 0.6, dampingFraction: 0.8), value: viewModel.showReaction)
+                            .scaleEffect(viewModel.reactionManager.isShowing ? 1.0 : 0.5)
+                            .opacity(viewModel.reactionManager.isShowing ? 1.0 : 0.0)
+                            .animation(.spring(response: 0.6, dampingFraction: 0.8),
+                                       value: viewModel.reactionManager.isShowing)
                     }
                 }
                 
@@ -92,13 +93,13 @@ struct ContentView: View {
                         viewModel.rejectPrediction()
                     }
                     .buttonStyle(RejectButtonStyle())
-                    .disabled(viewModel.showReaction) // Блокируем во время анимации
+                    .disabled(viewModel.reactionManager.isShowing) // Блокируем во время анимации
                     
                     Button("👍") {
                         viewModel.acceptPrediction()
                     }
                     .buttonStyle(AcceptButtonStyle())
-                    .disabled(viewModel.showReaction) // Блокируем во время анимации
+                    .disabled(viewModel.reactionManager.isShowing) // Блокируем во время анимации
                 }
                 .padding(.horizontal)
             }
