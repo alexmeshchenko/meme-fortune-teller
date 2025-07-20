@@ -14,11 +14,13 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             VStack(spacing: 20) {
+                
                 // Поле ввода вопроса
                 TextField("введите ваш запрос", text: $viewModel.userQuestion)
                     .textFieldStyle(SearchTextFieldStyle(text: $viewModel.userQuestion))
                     .padding(.horizontal)
                     .focused($isTextFieldFocused)
+                    .disabled(viewModel.isLoading)  // Блокируем только при загрузке
                 
                 // Кнопка получить предсказание
                 Button("ПОЛУЧИТЬ ПРЕДСКАЗАНИЕ") {
